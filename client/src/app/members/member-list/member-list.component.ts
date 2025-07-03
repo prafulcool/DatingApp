@@ -12,17 +12,23 @@ import { Member } from '../../_models/member';
 })
 export class MemberListComponent implements OnInit {
 
-  private memberService = inject(MembersService);
-  members: Member[] = [];
+  //private memberService = inject(MembersService);
+  memberService = inject(MembersService);
+  //members: Member[] = [];
 
   ngOnInit(): void {
+    if(this.memberService.members.length == 0)
       this.loadMembers();
   }
 
+  // loadMembers(){
+  //   this.memberService.getMembers().subscribe({
+  //     next: members => this.members = members
+  //   })
+  // }
+
   loadMembers(){
-    this.memberService.getMembers().subscribe({
-      next: members => this.members = members
-    })
+    this.memberService.getMembers();
   }
 
 }
